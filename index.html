@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+    <head>
+        <title>Game</title>
+        <link rel="stylesheet" href="./estilos/css-reset.css">
+        <link rel="stylesheet" href="./estilos/estilos.css">
+    </head>
+    <body>
+        <div class="cabeca-titulogame">
+            <span>PArrot game</span>
+        </div>
+        <div id="tela-inicial" class="tela-inicial">
+            <span class="welcome-game-txt">Bem-vindo ao jogo!</span>
+            <button onclick="iniciar()" class="welcome-game-button">Iniciar</button>
+        </div>
+        <div id="tela-jogo" class="tela-jogo">
+            <div class="cartas-todas">
+                <div class="cartas">
+                    <button id="carta1a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta2a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta3a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta4a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta5a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta6a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta7a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                </div>
+                <div class="cartas">
+                    <button id="carta1b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta2b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta3b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta4b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta5b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta6b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                    <button id="carta7b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"></button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    function iniciar(){
+        let ncartas = 0;
+        let lines = ["a", "b"];
+        let gifs = ["bobrossparrot", "explodyparrot", "fiestaparrot", "metalparrot", "revertitparrot", "tripletsparrot", "unicornparrot"];
+        function comparador() { 
+            return Math.random() - 0.5;
+        }
+        gifs.sort(comparador);
+        while (ncartas < 4 || ncartas > 14){
+            ncartas = window.prompt("Digite um número par entre 4 e 14");
+        }
+        for (let j = 0; j < 2; j++){
+            for(let i = 1; i <= ncartas/2; i++){
+                let cartaid = "carta" + i + lines[j];
+                document.getElementById(cartaid).style.display = "flex";
+                document.getElementById(cartaid).children[0].style.display = "flex";
+            }
+        }
+        document.getElementById("tela-inicial").style.display="none";
+        document.getElementById("tela-jogo").style.display="flex";
+    }
+    function virar_carta(){
+        let a = event.target.closest('button');
+        let ida = a.id;
+        let imge = a.children[0];
+        let lines = ["a", "b"];
+        let found = 0;
+        for (let i = 0; i < 2; i++){
+            for (let j = 1; j < 8; j++){
+                let cartaid = "carta" + j + lines[i];
+                let sourceimage = document.getElementById(cartaid).children[0];
+                if (sourceimage.src.toString().split("imgs/")[1] != "back.png" && cartaid != ida){
+                    sourceimage.src = "./imgs/back.png";
+                    imge.src = "./imgs/back.png";
+                    found = found + 1;
+                }
+                else if (i == 1 && j == 7 && found == 0){
+                    imge.src = "";
+                }
+            }
+        }
+    }
+</script>
