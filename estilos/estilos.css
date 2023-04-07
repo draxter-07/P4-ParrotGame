@@ -72,6 +72,18 @@ body{
     width: 100%;
     height: 100%;
 }
+.timer{
+    background-color: yellowgreen;
+    font-size: 20px;
+    position: absolute;
+    right: 20vw;
+    width: 50px;
+    box-sizing: border-box;
+    text-align: center;
+    top: 0px;
+    padding: 10px;
+    color: rgb(223, 255, 171);
+}
 @media (max-width: 614px){
     .cartas{
         width: 100%;

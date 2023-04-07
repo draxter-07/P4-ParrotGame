@@ -32,6 +32,9 @@
                 </div>
             </div>
         </div>
+        <div data-test="timer" id="timer" class="timer">
+            <span>0</span>
+        </div>
     </body>
 </html>
 
@@ -39,7 +42,18 @@
     var ncartas = 0;
     var cartasid_imgssrc = [];
     var tentativas = 0;
+    var tempo = 0;
     const sleep = ms => new Promise(r => setTimeout(r, ms));
+    async function time(){
+        for (let i = 0; i >= 0; i++){
+            if (cartasid_imgssrc.length == 0){
+                return 0;
+            }
+            await sleep(1000);
+            tempo = tempo + 1;
+            document.getElementById("timer").innerHTML = tempo;
+        }
+    }
     function iniciar(){
         let lines = ["a", "b"];
         let gifs = ["bobrossparrot", "explodyparrot", "fiestaparrot", "metalparrot", "revertitparrot", "tripletsparrot", "unicornparrot"];
@@ -69,6 +83,7 @@
             }
         }
         document.getElementById("tela-jogo").style.display="flex";
+        time();
     }
     async function virar_carta(){
         let a = event.target.closest('button');
@@ -107,7 +122,20 @@
                                 cartasid_imgssrc.splice(k, 1);
                             }
                             if (cartasid_imgssrc.length == 0){
-                                alert("Você venceu em " + tentativas + " jogadas");
+                                alert("Você ganhou em " + tentativas + " jogadas! A duração do jogo foi " + tempo + " segundos!");
+                                let decis = window.prompt("Você gostaria de reiniciar o jogo?");
+                                if (decis == "sim"){
+                                    tempo = 0;
+                                    tentativas = 0;
+                                    for (let n = 0; n < 2; n++){
+                                        for (let m = 1; m < 8; m++){
+                                            let cid = "carta" + m + lines[n];
+                                            document.getElementById(cid).children[0].style.display = "flex";
+                                            document.getElementById(cid).children[1].style.display = "none";
+                                        }
+                                    }
+                                    iniciar();
+                                }
                             }
                         }
                     }
