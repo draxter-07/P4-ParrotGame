@@ -6,12 +6,9 @@
         <link rel="stylesheet" href="./estilos/css-reset.css">
         <link rel="stylesheet" href="./estilos/estilos.css">
     </head>
-    <body>
+    <body onload="iniciar()">
         <div class="cabeca-titulogame">
             <span>PARROT CARD GAME</span>
-        </div>
-        <div id="tela-inicial" class="tela-inicial">
-            <button onclick="iniciar()" class="welcome-game-button">Iniciar</button>
         </div>
         <div id="tela-jogo" class="tela-jogo">
             <div class="cartas-todas">
@@ -71,7 +68,6 @@
                 cartasid_imgssrc.push([cartaid, gifs_opcoes[i + j*(ncartas/2) - 1]]);
             }
         }
-        document.getElementById("tela-inicial").style.display="none";
         document.getElementById("tela-jogo").style.display="flex";
     }
     async function virar_carta(){
