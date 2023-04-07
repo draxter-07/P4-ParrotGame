@@ -13,22 +13,22 @@
         <div id="tela-jogo" class="tela-jogo">
             <div class="cartas-todas">
                 <div class="cartas">
-                    <button id="carta1a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta2a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta3a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta4a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta5a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta6a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta7a" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta1a" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta2a" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta3a" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta4a" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta5a" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta6a" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta7a" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
                 </div>
                 <div class="cartas">
-                    <button id="carta1b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta2b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta3b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta4b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta5b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta6b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
-                    <button id="carta7b" onclick="virar_carta()"><img class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta1b" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta2b" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta3b" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta4b" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta5b" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta6b" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
+                    <button data-test="card" id="carta7b" onclick="virar_carta()"><img data-test="face-down-image" class="img-backcard" src="./imgs/back.png"><img class="img-frontcard" src=""></button>
                 </div>
             </div>
         </div>
@@ -83,6 +83,7 @@
         }
         document.getElementById(ida).children[0].style.display = "none";
         document.getElementById(ida).children[1].style.display = "flex";
+        document.getElementById(ida).children[1].data_test = "face-up-image";
         for (let i = 0; i < cartasid_imgssrc.length; i++){
             let cartaid = cartasid_imgssrc[i][0];
             let backstatus = document.getElementById(cartaid).children[0].style.display;
@@ -94,8 +95,10 @@
                             await sleep(1000);
                             document.getElementById(ida).children[0].style.display = "flex";
                             document.getElementById(ida).children[1].style.display = "none";
+                            document.getElementById(ida).children[1].data_test = "face-down-image";
                             document.getElementById(cartaid).children[0].style.display = "flex";
                             document.getElementById(cartaid).children[1].style.display = "none";
+                            document.getElementById(cartaid).children[1].data_test = "face-down-image";
                         }
                         else{
                             cartasid_imgssrc.splice(i, 1);
